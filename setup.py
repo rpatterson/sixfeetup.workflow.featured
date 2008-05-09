@@ -20,7 +20,7 @@ setup(name='sixfeetup.workflow.featured',
       url='http://svn.plone.org/svn/plone/plone.example',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['sixfeetup', 'workflow'],
+      namespace_packages=['sixfeetup', 'sixfeetup.workflow'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
