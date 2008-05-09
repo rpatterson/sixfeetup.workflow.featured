@@ -3,5 +3,13 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="sixfeetup.workflow.featured">
 
+  <!-- Register the installation GenericSetup extension profile -->
+    <genericsetup:registerProfile
+      name="default"
+      title="SixFeetUp Worklow Featured"
+      directory="profiles/default"
+      description="SixFeetUp Worklow Featured"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
 
 </configure>

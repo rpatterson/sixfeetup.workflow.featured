@@ -1,0 +1,13 @@
+<configure 
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five">
+
+  <adapter 
+      for="* *"
+      name="plone.contentmenu.workflow"
+      factory="amaral.app.browser.menu.WorkflowSubMenuItem"
+      provides="plone.app.contentmenu.interfaces.IContentMenuItem"
+      />
+
+</configure>
