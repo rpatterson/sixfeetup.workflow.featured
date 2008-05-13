@@ -4,96 +4,95 @@
              description="chain this to documents in the tips folder so they can be workflowed and presented in a tips portlet."
              state_variable="featured_state"
              initial_state="unfeatured">
-  <permission>Access contents information</permission>
-  <permission>Change portal events</permission>
-  <permission>List folder contents</permission>
-  <permission>Modify portal content</permission>
-  <permission>View</permission>
-  <state state_id="featured" title="Featured tip item">
-    <description>Set as the Featured Tip to appear in the Featured Tip portlet</description>
-    <exit-transition transition_id="unfeature"/>
-  </state>
-  <state state_id="unfeatured" title="Not featured">
-    <description>A tip, but not the tip to be featured in the portlet.</description>
-    <exit-transition transition_id="feature"/>
-  </state>
-  <transition transition_id="feature"
+ <state state_id="featured" title="Featured tip item">
+  <description>Set as the Featured Tip to appear in the Featured Tip portlet</description>
+  <exit-transition transition_id="unfeature"/>
+ </state>
+ <state state_id="unfeatured" title="Not featured">
+  <description>A tip, but not the tip to be featured in the portlet.</description>
+  <exit-transition transition_id="feature"/>
+ </state>
+ <transition transition_id="feature"
              title="Reviewer sets item as a featured tip"
              new_state="featured" trigger="USER"
-             before_script=""
-             after_script="">
-    <description>Places the contents of this item in the featured tip portlet.
-    </description>
-    <action url="%(content_url)s/content_status_modify?workflow_action=feature"
+             before_script="" after_script="">
+  <description>Places the contents of this item in the featured tip portlet.
+</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=feature"
           category="workflow">Feature</action>
-    <guard>
-      <guard-permission>Review portal content</guard-permission>
-    </guard>
-  </transition>
-  <transition transition_id="unfeature" title="Un-Featured"
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </transition>
+ <transition transition_id="unfeature" title="Un-Featured"
              new_state="unfeatured" trigger="USER"
              before_script="" after_script="">
-    <description>This is the the default state of a document in the tips folder.</description>
-    <action url="%(content_url)s/content_status_modify?workflow_action=unfeature"
+  <description>This is the the default state of a document in the tips folder.</description>
+  <action url="%(content_url)s/content_status_modify?workflow_action=unfeature"
           category="workflow">un-feature</action>
-    <guard>
-      <guard-permission>Review portal content</guard-permission>
-    </guard>
-  </transition>
-  <worklist worklist_id="reviewer_queue" title="">
-    <description>Reviewer tasks</description>
-    <action url="%(portal_url)s/search?review_state=pending"
-            category="global">Pending (%(count)d)</action>
-    <guard>
-      <guard-permission>Review portal content</guard-permission>
-    </guard>
-    <match name="review_state" values="pending"/>
-  </worklist>
-  <variable variable_id="action" for_catalog="False"
-           for_status="True" update_always="True">
-    <description>Previous transition</description>
-    <default>
-      <expression>transition/getId|nothing</expression>
-    </default>
-    <guard>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
   </guard>
-  </variable>
-  <variable variable_id="actor" for_catalog="False"
+ </transition>
+ <worklist worklist_id="reviewer_queue" title="">
+  <description>Reviewer tasks</description>
+  <action url="%(portal_url)s/search?review_state=pending"
+          category="global">Pending (%(count)d)</action>
+  <guard>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+  <match name="review_state" values="pending"/>
+ </worklist>
+ <variable variable_id="action" for_catalog="False"
            for_status="True" update_always="True">
-    <description>The ID of the user who performed the previous transition</description>
-    <default>
-      <expression>user/getUserName</expression>
-    </default>
-    <guard>
-    </guard>
-  </variable>
-  <variable variable_id="comments" for_catalog="False"
+  <description>Previous transition</description>
+  <default>
+   
+   <expression>transition/getId|nothing</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="actor" for_catalog="False"
            for_status="True" update_always="True">
-    <description>Comment about the last transition</description>
-    <default>
-      <expression>python:state_change.kwargs.get('comment', '')</expression>
-    </default>
-    <guard>
-    </guard>
-  </variable>
-  <variable variable_id="review_history" for_catalog="False"
+  <description>The ID of the user who performed the previous transition</description>
+  <default>
+   
+   <expression>user/getUserName</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="comments" for_catalog="False"
+           for_status="True" update_always="True">
+  <description>Comment about the last transition</description>
+  <default>
+   
+   <expression>python:state_change.kwargs.get('comment', '')</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
+ <variable variable_id="review_history" for_catalog="False"
            for_status="False" update_always="False">
-    <description>Provides access to workflow history</description>
-    <default>
-      <expression>state_change/getHistory</expression>
-    </default>
-    <guard>
-      <guard-permission>Request review</guard-permission>
-      <guard-permission>Review portal content</guard-permission>
-    </guard>
-  </variable>
-  <variable variable_id="time" for_catalog="False"
+  <description>Provides access to workflow history</description>
+  <default>
+   
+   <expression>state_change/getHistory</expression>
+  </default>
+  <guard>
+   <guard-permission>Request review</guard-permission>
+   <guard-permission>Review portal content</guard-permission>
+  </guard>
+ </variable>
+ <variable variable_id="time" for_catalog="False"
            for_status="True" update_always="True">
-    <description>When the previous transition was performed</description>
-    <default>
-      <expression>state_change/getDateTime</expression>
-    </default>
-    <guard>
-    </guard>
-  </variable>
+  <description>When the previous transition was performed</description>
+  <default>
+   
+   <expression>state_change/getDateTime</expression>
+  </default>
+  <guard>
+  </guard>
+ </variable>
 </dc-workflow>
