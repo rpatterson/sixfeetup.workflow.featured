@@ -1,23 +1,22 @@
 <?xml version="1.0"?>
 <dc-workflow workflow_id="featured_workflow"
              title="Featured Workflow"
-             description="chain this to documents in the tips folder so they can be workflowed and presented in a tips portlet."
+             description="Add this workflow as a chain to be able to feature items"
              state_variable="featured_state"
              initial_state="unfeatured">
- <state state_id="featured" title="Featured tip item">
-  <description>Set as the Featured Tip to appear in the Featured Tip portlet</description>
+ <state state_id="featured" title="Featured">
+  <description>A featured item</description>
   <exit-transition transition_id="unfeature"/>
  </state>
  <state state_id="unfeatured" title="Not featured">
-  <description>A tip, but not the tip to be featured in the portlet.</description>
+  <description>Not a featured item</description>
   <exit-transition transition_id="feature"/>
  </state>
  <transition transition_id="feature"
-             title="Reviewer sets item as a featured tip"
+             title="Reviewer sets item as featured"
              new_state="featured" trigger="USER"
              before_script="" after_script="">
-  <description>Places the contents of this item in the featured tip portlet.
-</description>
+  <description>Feature this item</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=feature"
           category="workflow">Feature</action>
   <guard>
@@ -27,7 +26,7 @@
  <transition transition_id="unfeature" title="Un-Featured"
              new_state="unfeatured" trigger="USER"
              before_script="" after_script="">
-  <description>This is the the default state of a document in the tips folder.</description>
+  <description>Un-feature this item</description>
   <action url="%(content_url)s/content_status_modify?workflow_action=unfeature"
           category="workflow">un-feature</action>
   <guard>
