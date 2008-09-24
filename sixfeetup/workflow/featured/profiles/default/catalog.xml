@@ -3,4 +3,5 @@
  <index name="featured_state" meta_type="FieldIndex">
   <indexed_attr value="featured_state"/>
  </index>
+ <column value="featured_state"/>
 </object>
