@@ -4,12 +4,15 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="sixfeetup.workflow.featured">
 
+  <!-- include any dependent packages -->
+  <include package="sixfeetup.workflow.chained"/>
+
   <!-- Register the installation GenericSetup extension profile -->
-    <genericsetup:registerProfile
+  <genericsetup:registerProfile
       name="default"
       title="SixFeetUp Worklow Featured"
       directory="profiles/default"
-      description="SixFeetUp Worklow Featured"
+      description="Six Feet Up Featured Worklow"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
