@@ -5,7 +5,8 @@
     i18n_domain="sixfeetup.workflow.featured">
 
   <!-- include any dependent packages -->
-  <include package="sixfeetup.workflow.chained"/>
+  <includePlugins package="." />
+  <includeDependencies package="." />
 
   <!-- Register the installation GenericSetup extension profile -->
   <genericsetup:registerProfile
