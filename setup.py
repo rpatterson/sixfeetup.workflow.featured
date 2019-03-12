@@ -29,7 +29,6 @@ setup(name='sixfeetup.workflow.featured',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'sixfeetup.workflow.chained',
           'sixfeetup.catalogoverrides',
       ],
       entry_points="""

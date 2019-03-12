@@ -3,7 +3,6 @@
     i18n_domain="sixfeetup.workflow.featured">
 
   <!-- include any dependent packages -->
-  <include package="sixfeetup.workflow.chained" file="overrides.zcml"/>
   <include package="sixfeetup.catalogoverrides" file="overrides.zcml"/>
 
 </configure>
