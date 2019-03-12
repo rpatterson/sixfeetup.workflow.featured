@@ -1,7 +1,10 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.4dev'
+with open(os.path.join(
+        os.path.dirname(__file__),
+        'sixfeetup', 'workflow', 'featured', 'version.txt')) as version_txt:
+    version = version_txt.read().strip()
 
 setup(name='sixfeetup.workflow.featured',
       version=version,
